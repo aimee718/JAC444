@@ -1,0 +1,107 @@
+/**********************************************
+Workshop 1
+Course:<JAC444> - Winter 2021
+Last Name:Lee
+First Name:Eun Kyung (Aimee)
+ID:056342132
+Section:NBB
+This assignment represents my own work in accordance with Seneca Academic Policy.
+Signature
+Date:02-01-2021
+**********************************************/
+//=======================================================================
+//Task 1
+//=======================================================================
+package java444;
+import java.util.*;
+
+public class MaxLocation {
+	public static void main(String[] args) {
+		
+		double a[][]= {{23.5, 35, 2, 10},
+					{4.5, 3, 45, 3.5},
+					{35, 44, 5.5, 9.6}};
+		double maxVal=0;
+		
+		for(int i=0;i<a.length;i++) {
+			for(int j=0;j<a[i].length;j++) {
+				if(a[i][j]>maxVal) {
+					maxVal=a[i][j];
+				}
+			}
+		}
+		System.out.println(maxVal);
+	}
+
+}
+
+//=======================================================================
+//Task 2
+//=======================================================================
+
+package java444;
+
+public class Craps {
+	public static void main(String[] args) {
+		
+		int flag =0; //win or lose flag
+		int getSum = rollDice(); //sum of two dice rolled
+		
+		//Determines win, loss, established points based on sum of dice
+		switch (getSum) {
+		case 2: 
+		case 3:
+		case 12: flag = 0;break;
+		case 7:
+		case 11: flag = 1; break;
+		case 4:
+		case 5:
+		case 6:
+		case 8:
+		case 9:
+		case 10: flag = 2; break;
+		}
+		
+		//print output win/loss/established point result based on the value of flag
+		if(flag ==0 || flag == 1) {
+			printResult(flag);
+		}else {
+			
+			int getSum2 = 0;
+			System.out.println("Point is (established) set to " + getSum);
+			do {
+				getSum2= rollDice();
+			}while(getSum2 !=getSum && getSum2 !=7); 
+			//continuous loop if conditions are met 
+			//(sum of established point dice does not equal the initial dice rolled sum 
+			//and/or established point dice does not equal 7)
+			
+			if(getSum2 == 7) {
+				printResult(0);
+			}else {
+				printResult(1);
+			}
+		}
+
+	}
+	//randomly generate two values between 1 to 6, add the two values and return its sum
+	public static int rollDice() {
+		int diceOne = (int)(1+Math.random()*6);
+		int diceTwo = (int) (1+Math.random()*6);
+		int sum = diceOne + diceTwo;
+		
+		System.out.println("You rolled "+ diceOne + " + " + diceTwo + " = " + sum);
+		return sum;
+	}
+	//print result of game based on value of flag
+	public static void printResult(int result) {
+		if(result ==0) {
+			System.out.println("Craps, Better Luck Next Time, You Lose");
+		}else if(result == 1) {
+			System.out.println("Congratuations, You Win");
+		}
+	}
+
+}
+
+
